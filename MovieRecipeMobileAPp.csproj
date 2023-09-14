@@ -58,9 +58,11 @@
 	<ItemGroup>
 	  <None Remove="MVVM\" />
 	  <None Remove="MVVM\Models\" />
+	  <None Remove="MVVM\View\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
 	  <Folder Include="MVVM\Models\" />
+	  <Folder Include="MVVM\View\" />
 	</ItemGroup>
 </Project>

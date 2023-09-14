@@ -1,3 +1,10 @@
+.vs
+.vs/*
+.vs/MovieRecipeMobileApp/*
+MovieRecipeMobileApp/bin
+MovieRecipeMobileApp/bin/*
+
+
 # globs
 Makefile.in
 *.userprefs
