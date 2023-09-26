@@ -1,18 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MovieRecipeMobileAPp.MVVM.View.Dashboard"
+             x:Class="MovieRecipeMobileAPp.MVVM.View.DashboardPage"
              xmlns:models="clr-namespace:MovieRecipeMobileAPp.MVVM.Models"
              xmlns:vm="clr-namespace:MovieRecipeMobileAPp.MVVM.ViewModel"
-             x:DataType="vm:RecipeViewModel"
-             Title="Dashboard">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" />
-    </ContentPage.ToolbarItems>
-    <Grid RowDefinitions="Auto, *">
+             Title="DashboardPage">
+   <Grid RowDefinitions="Auto, *, Auto">
         <Grid
-        Grid.Row="0"
-            Margin="5"
+         Grid.Row="0"
+         Margin="5"
         >
         <RoundRectangle CornerRadius="10"
                         Fill="#cccccc"
@@ -24,7 +20,7 @@
             PlaceholderColor="WhiteSmoke"
             VerticalOptions="Center">
         </SearchBar>
-    </Grid>
+        </Grid>
         <ScrollView Grid.Row="1">
             <VerticalStackLayout>
                 <CollectionView ItemsSource="{Binding Recipes}">
@@ -45,8 +41,7 @@
                                 <StackLayout>
                                     <Label
                                         Text="{Binding Name}"
-                                        FontAttributes="Bold"
-                                        FontSize="Title"
+                                        StyleClass="LightBlue, CardTitle"
                                         />
                                 </StackLayout>
                             </Frame>
@@ -55,6 +50,17 @@
                 </CollectionView>
             </VerticalStackLayout>
         </ScrollView>
-    </Grid>
 
+        <Button Grid.Row="2"
+                Text="+"
+                BorderWidth="1"
+                FontSize="40"
+                WidthRequest="60"
+                HeightRequest="60"
+                CornerRadius="50"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Clicked="AddRecipeButton_Tapped"
+                />
+    </Grid>
 </ContentPage>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieRecipeMobileAPp.MVVM.View.RecipeDetailPage"
+             Title="RecipeDetailPage">
+    <Grid Margin="15" RowDefinitions=".4*, .1*, .4*">
+        <Border Grid.RowSpan="2">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20, 20, 20, 20"/>
+            </Border.StrokeShape>
+            <Grid RowDefinitions=".3*, .7*">
+
+            </Grid>
+        </Border>
+
+    </Grid>
+
+</ContentPage>
