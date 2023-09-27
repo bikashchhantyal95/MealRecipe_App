@@ -4,6 +4,7 @@
              x:Class="MovieRecipeMobileAPp.MVVM.View.DashboardPage"
              xmlns:models="clr-namespace:MovieRecipeMobileAPp.MVVM.Models"
              xmlns:vm="clr-namespace:MovieRecipeMobileAPp.MVVM.ViewModel"
+             x:DataType="vm:RecipeViewModel"
              Title="DashboardPage">
    <Grid RowDefinitions="Auto, *, Auto">
         <Grid
@@ -24,7 +25,7 @@
         <ScrollView Grid.Row="1">
             <VerticalStackLayout>
                 <CollectionView ItemsSource="{Binding Recipes}">
-                    <CollectionView.ItemsLayout>
+                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout
                             Orientation="Vertical"
                             ItemSpacing="10"/>
@@ -52,15 +53,17 @@
         </ScrollView>
 
         <Button Grid.Row="2"
-                Text="+"
                 BorderWidth="1"
                 FontSize="40"
                 WidthRequest="60"
                 HeightRequest="60"
                 CornerRadius="50"
+                Text="+"
                 HorizontalOptions="Center"
-                VerticalOptions="Center"
+                VerticalOptions="Start"
                 Clicked="AddRecipeButton_Tapped"
                 />
+            
+        
     </Grid>
 </ContentPage>

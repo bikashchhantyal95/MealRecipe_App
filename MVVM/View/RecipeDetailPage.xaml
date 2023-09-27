@@ -8,9 +8,7 @@
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="20, 20, 20, 20"/>
             </Border.StrokeShape>
-            <Grid RowDefinitions=".3*, .7*">
-
-            </Grid>
+            <Button Text="Add Ingredients" Clicked="AddIngredients_Button_Clicked"/>
         </Border>
 
     </Grid>
