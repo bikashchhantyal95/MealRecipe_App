@@ -2,22 +2,24 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MovieRecipeMobileAPp.MVVM.View.CreateRecipePage"
-             Title="CreateRecipePage">
+             xmlns:vm="clr-namespace:MovieRecipeMobileAPp.MVVM.ViewModel"
+             x:DataType="vm:CreateRecipeViewModel"
+             Title="Create Recipe Page">
     <ScrollView>
         <VerticalStackLayout Margin="0, 25, 0, 25">
             <Frame Padding="15, 6, 15, 6">
-                <Entry Placeholder="Name of Recipe"/>
+                <Entry Placeholder="Name of Recipe" Text="{Binding Name}"/>
             </Frame>
 
             <Frame Padding="15, 6, 15, 6">
-                <Entry Placeholder="Description"/>
+                <Entry Placeholder="Description" Text="{Binding Description}"/>
             </Frame>
 
             <Frame Padding="15, 6, 15, 6">
-                <Entry Placeholder="Instructions"/>
+                <Entry Placeholder="Instructions" Text="{Binding Instructions}"/>
             </Frame>
 
-            <Button Text="Add Recipe" Padding="15" Margin="20, 0, 20, 0"/>
+            <Button Text="Add Recipe" Padding="15" Margin="20, 0, 20, 0" Command="{Binding CreateRecipe}"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
