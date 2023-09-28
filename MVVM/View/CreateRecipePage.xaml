@@ -7,16 +7,16 @@
              Title="Create Recipe Page">
     <ScrollView>
         <VerticalStackLayout Margin="0, 25, 0, 25">
-            <Frame Padding="15, 6, 15, 6">
-                <Entry Placeholder="Name of Recipe" Text="{Binding Name}"/>
+            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
+                <Entry Placeholder="Name of Recipe" Text="{Binding Name}" x:Name="nameEntryField"/>
             </Frame>
 
-            <Frame Padding="15, 6, 15, 6">
-                <Entry Placeholder="Description" Text="{Binding Description}"/>
+            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
+                <Entry Placeholder="Description" Text="{Binding Description}" x:Name="descEntryField"/>
             </Frame>
 
-            <Frame Padding="15, 6, 15, 6">
-                <Entry Placeholder="Instructions" Text="{Binding Instructions}"/>
+            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
+                <Entry Placeholder="Instructions" Text="{Binding Instructions}" x:Name="instructionsEntryField"/>
             </Frame>
 
             <Button Text="Add Recipe" Padding="15" Margin="20, 0, 20, 0" Command="{Binding CreateRecipe}"/>

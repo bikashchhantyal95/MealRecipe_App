@@ -4,15 +4,26 @@ namespace MovieRecipeMobileAPp.MVVM.View;
 
 public partial class DashboardPage : ContentPage
 {
+	private RecipeViewModel _recipeViewModel;
 	public DashboardPage()
 	{
 		InitializeComponent();
-		BindingContext = new RecipeViewModel();
+		_recipeViewModel = new RecipeViewModel();
+		BindingContext = _recipeViewModel;
 	}
 
 	private void AddRecipeButton_Tapped(Object sender, EventArgs e)
 	{
 		Navigation.PushAsync(new CreateRecipePage());
 	}
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+		//Load all recipes
+		_recipeViewModel.LoadAllRecipes();
+
+    }
 
 }
