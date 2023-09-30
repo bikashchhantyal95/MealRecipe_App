@@ -54,16 +54,7 @@ namespace MovieRecipeMobileAPp.MVVM.Models
                         Instructions = item.Object.Instructions
                     }).ToList()
                     );
-                //return recipeData;
-                //return recipes.Select(
-                //    item => new RecipeModel
-                //    {
-                //        Id = item.Key,
-                //        Name = item.Object.Name,
-                //        Description = item.Object.Description,
-                //        Instructions = item.Object.Instructions
-                //    }
-                //    ).ToList();
+                
             }catch(Exception e)
             {
                 return new List<RecipeModel>();
@@ -73,7 +64,7 @@ namespace MovieRecipeMobileAPp.MVVM.Models
 
     public static class FirebaseConfig
     {
-        public const string firebaseDatabaseUrl = "https://your-firebase-database-url.firebaseio.com/";
+        public const string firebaseDatabaseUrl = "https://recipebook-5d5d2-default-rtdb.firebaseio.com/";
     }
 }
 

@@ -43,6 +43,9 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
             bool result = await recipeRepository.AddRecipe(recipe);
             if (result) {
                 Console.WriteLine("Added Recipe successfully.");
+                Name = String.Empty;
+                Description = String.Empty;
+                Instructions = String.Empty;
             }
             else
             {
@@ -50,6 +53,8 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
             }
 
         }
+
+       
     }
 }
 

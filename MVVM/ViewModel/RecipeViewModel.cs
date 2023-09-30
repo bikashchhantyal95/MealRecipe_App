@@ -34,16 +34,17 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 		public RecipeViewModel()
 		{
             recipeRepository = new RecipeRepository();
-            
+			Recipes = new ObservableCollection<RecipeModel>();
 
         }
 
-		public async void LoadAllRecipes()
+		public async Task LoadAllRecipes()
 		{
             Recipes.Clear();
 			try
 			{
                 var allRecipes = await recipeRepository.GetAllRecipes();
+				Console.Write(allRecipes);
                 foreach (var recipe in allRecipes)
                 {
                     Recipes.Add(recipe);
