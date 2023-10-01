@@ -5,8 +5,8 @@ using Firebase.Database.Query;
 
 namespace MovieRecipeMobileAPp.MVVM.Models
 {
-	public class RecipeRepository
-	{
+    public class RecipeRepository
+    {
         private readonly FirebaseClient firebaseClient;
         //private List<RecipeModel> recipes;
 
@@ -22,6 +22,7 @@ namespace MovieRecipeMobileAPp.MVVM.Models
             firebaseClient = new FirebaseClient(FirebaseConfig.firebaseDatabaseUrl);
         }
 
+        //Add a new recipe to the firebase database
         public async Task<bool> AddRecipe(RecipeModel recipe)
         {
             try
@@ -31,13 +32,14 @@ namespace MovieRecipeMobileAPp.MVVM.Models
                 return true;
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine("Error adding recipe");
                 return false;
             }
         }
 
+        //Retrieve all recipes from the firebase database
         public async Task<List<RecipeModel>> GetAllRecipes()
         {
             try
@@ -54,17 +56,50 @@ namespace MovieRecipeMobileAPp.MVVM.Models
                         Instructions = item.Object.Instructions
                     }).ToList()
                     );
-                
-            }catch(Exception e)
+
+            }
+            catch (Exception e)
             {
                 return new List<RecipeModel>();
             }
         }
+    
+    // Remove recipe from the firebase database using key
+    public async Task<bool> RemoveRecipe(string recipeKey)
+    {
+        try
+        {
+             await firebaseClient.Child("Recipe").Child(recipeKey).DeleteAsync();
+                return true;
+
+        }catch(Exception e)
+        {
+                Console.WriteLine($"Error deleting recipe: {e.Message}");
+                return false;
+        }
     }
 
+        //Fetch recipe detail using key
+    public async Task<RecipeModel> GetRecipeDetail(string recipeKey)
+     {
+            try
+            {
+                var recipe = await firebaseClient.Child("Recipe").Child(recipeKey).OnceSingleAsync<RecipeModel>();
+
+                return recipe;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error fetching recipe detail: {e.Message}");
+                return null;
+            }
+        }
+    }
+
+    //Firebase configuration class
     public static class FirebaseConfig
     {
         public const string firebaseDatabaseUrl = "https://recipebook-5d5d2-default-rtdb.firebaseio.com/";
     }
-}
 
+}
