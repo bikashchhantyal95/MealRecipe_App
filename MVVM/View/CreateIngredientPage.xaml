@@ -5,13 +5,21 @@
              Title="CreateIngredientPage">
     <VerticalStackLayout>
         <Label 
-            Text="Ingredients"
+            Text="Add Ingredients"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Grid>
-            <Grid.RowDefinitions>
+        <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
+                <Entry Placeholder="Ingredients" x:Name="ingredientsEntryField"/>
+        </Frame>
 
-            </Grid.RowDefinitions>
-        </Grid>
+        <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
+                <Entry Placeholder="Quantiy" x:Name="qtyEntryField"/>
+        </Frame>
+
+        <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
+                <Entry Placeholder="Unit" x:Name="unitEntryField"/>
+        </Frame>
+
+        <Button Text="Add" HeightRequest="50" WidthRequest="70"/>
     </VerticalStackLayout>
 </ContentPage>

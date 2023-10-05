@@ -28,6 +28,7 @@ namespace MovieRecipeMobileAPp.MVVM.Models
             try
             {
                 var res = await firebaseClient.Child("Recipe").PostAsync(recipe);
+                recipe.Id = res.Key;
                 Console.WriteLine("Recipe added successfully.");
                 return true;
 
@@ -93,8 +94,25 @@ namespace MovieRecipeMobileAPp.MVVM.Models
                 Console.WriteLine($"Error fetching recipe detail: {e.Message}");
                 return null;
             }
-        }
+       }
+
+        public async Task<bool> UpdateRecipe(RecipeModel recipe)
+        {
+            try
+            {
+                await firebaseClient.Child("Recipes").Child(recipe.Id).PutAsync(recipe);
+                return true;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine($"Error updating recupe: {e.Message}");
+                return false;
+            }
     }
+    }
+
+
+    
 
     //Firebase configuration class
     public static class FirebaseConfig

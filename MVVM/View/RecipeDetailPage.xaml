@@ -37,6 +37,8 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
+            <Button Text="Add Ingredients" Clicked="AddIngredients_Button_Clicked" HeightRequest="50" WidthRequest="80" TextColor="White"/>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
