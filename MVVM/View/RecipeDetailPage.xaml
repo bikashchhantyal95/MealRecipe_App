@@ -2,15 +2,41 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MovieRecipeMobileAPp.MVVM.View.RecipeDetailPage"
+             xmlns:vm="clr-namespace:MovieRecipeMobileAPp.MVVM.ViewModel"
+             x:DataType="vm:RecipeDetailsViewModel"
              Title="RecipeDetailPage">
-    <Grid Margin="15" RowDefinitions=".4*, .1*, .4*">
+    <!--<Grid Margin="15" RowDefinitions=".4*, .1*, .4*">
         <Border Grid.RowSpan="2">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="20, 20, 20, 20"/>
             </Border.StrokeShape>
             <Button Text="Add Ingredients" Clicked="AddIngredients_Button_Clicked"/>
         </Border>
+        <Label Text="{Binding Recipe.Name}"/>
+    </Grid>-->
 
-    </Grid>
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <Label 
+            Text="{Binding Recipe.Name}"
+            FontSize="Large"
+            FontAttributes="Bold"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
 
+
+            <Label 
+            Text="{Binding Recipe.Description}"
+            FontSize="Medium"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+            <Label 
+            Text="{Binding Recipe.Instructions}"
+            FontSize="Medium"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -25,6 +25,9 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
         [ObservableProperty]
         private string instructions;
 
+        [ObservableProperty]
+        private int cookingTime;
+
         public Command CreateRecipe { get; }
 
         private async void CreateRecipeBtnTapped(object obj)

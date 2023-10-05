@@ -2,7 +2,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MovieRecipeMobileAPp.MVVM.Models;
+using MovieRecipeMobileAPp.MVVM.View;
 
 namespace MovieRecipeMobileAPp.MVVM.ViewModel
 {
@@ -15,21 +17,6 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 		[ObservableProperty]
 		public ObservableCollection<RecipeModel> recipes = new();
 
-        //private List<RecipeModel> recipes;
-
-		//public List<RecipeModel> Recipes
-		//{
-		//	get { return recipes; }
-		//	set
-		//	{
-		//		if(recipes != value)
-		//		{
-		//			recipes = value;
-		//			NotifyPropertyChange(nameof(Recipes));
-		//		}
-		//	}
-
-		//}
 
 		public RecipeViewModel()
 		{
@@ -57,17 +44,16 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 
 			}
 			
-
-			//Recipes = new ObservableCollection<RecipeModel>(allRecipes);
-
-			//Recipes = new ObservableCollection<RecipeModel>(allRecipes);
-			
         }
+		[RelayCommand]
+		public async void GoToDetailspage(RecipeModel selectedRecipe)
+		{
+			var detailsViewModel = new RecipeDetailsViewModel(selectedRecipe);
+			var detailspage = new RecipeDetailPage(detailsViewModel);
+			await Shell.Current.Navigation.PushAsync(detailspage);
 
-		//private void NotifyPropertyChange(string propertyName)
-		//{
-		//	PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		//}
+        }
+	
 	}
 }
 

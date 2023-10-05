@@ -1,10 +1,17 @@
 ﻿using System;
+using CommunityToolkit.Mvvm.ComponentModel;
+using MovieRecipeMobileAPp.MVVM.Models;
+
 namespace MovieRecipeMobileAPp.MVVM.ViewModel
 {
-	public class RecipeDetailsViewModel
+	public partial class RecipeDetailsViewModel: ObservableObject
 	{
-		public RecipeDetailsViewModel()
+        [ObservableProperty]
+		public RecipeModel recipe;
+
+		public RecipeDetailsViewModel(RecipeModel selctedRecipe)
 		{
+			recipe = selctedRecipe;
 		}
 	}
 }
