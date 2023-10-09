@@ -13,6 +13,13 @@ public partial class RecipeDetailPage : ContentPage
 
     void AddIngredients_Button_Clicked(Object sender, EventArgs e)
     {
-		Navigation.PushAsync(new CreateIngredientPage());
+		if (BindingContext is RecipeDetailsViewModel vm)
+		{
+			string recipeKey = vm.Recipe.Id;
+			Navigation.PushAsync(new CreateIngredientPage(recipeKey));
+		}
+
+
+		//Navigation.PushAsync(new CreateIngredientPage());
     }
 }

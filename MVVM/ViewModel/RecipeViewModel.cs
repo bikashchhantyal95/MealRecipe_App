@@ -53,7 +53,22 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 			await Shell.Current.Navigation.PushAsync(detailspage);
 
         }
-	
-	}
+
+        [RelayCommand]
+        public async void DeleteRecipe(RecipeModel selectedRecipe)
+        {
+			if (selectedRecipe == null)
+				return;
+			
+
+			bool isDeleted = await recipeRepository.RemoveRecipe(selectedRecipe.Id);
+			if (isDeleted)
+			{
+				await Shell.Current.DisplayAlert("Delete", selectedRecipe.Name, "OK");
+				Recipes.Remove(selectedRecipe);
+			}
+
+        }
+    }
 }
 

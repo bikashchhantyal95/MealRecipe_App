@@ -5,14 +5,14 @@
              xmlns:models="clr-namespace:MovieRecipeMobileAPp.MVVM.Models"
              xmlns:vm="clr-namespace:MovieRecipeMobileAPp.MVVM.ViewModel"
              x:DataType="vm:RecipeViewModel"
-             Title="DashboardPage">
+             Title="Dashboard">
     <ContentPage.Background>
         <LinearGradientBrush>
             <GradientStop Offset="0.1" Color="#FFCC33"/>
             <GradientStop Offset="1.0" Color="#FCBC03"/>
         </LinearGradientBrush>
     </ContentPage.Background>
-   <Grid RowDefinitions="Auto, *, Auto">
+   <!--<Grid RowDefinitions="Auto, *, Auto">
         <Grid
          Grid.Row="0"
          Margin="5"
@@ -28,8 +28,8 @@
             VerticalOptions="Center">
         </SearchBar>
         </Grid>
-        <ScrollView Grid.Row="1">
-            <VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="1">
                 <CollectionView ItemsSource="{Binding Recipes}">
                      <CollectionView.ItemsLayout>
                         <LinearItemsLayout
@@ -38,9 +38,18 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:RecipeModel">
-                            <Frame
-                                BackgroundColor="WhiteSmoke"
-                                BorderColor="#cccccc"
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems SwipeBehaviorOnInvoked="Close">
+                                        <SwipeItem
+                                            BackgroundColor="Red"
+                                            CommandParameter="{Binding .}"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:RecipeViewModel}}, Path=RemoveRecipeCommand}"
+                                            Text="Delete" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Frame
+                                BorderColor="Black"
                                 CornerRadius="5"
                                 Margin="5"
                                 Padding="10"
@@ -50,22 +59,22 @@
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type vm:RecipeViewModel}}, Path=GoToDetailspageCommand}"
                                         CommandParameter="{Binding .}"
                                         />
-
                                 </Frame.GestureRecognizers>
-                                <StackLayout>
+                                <VerticalStackLayout>
                                     <Label
                                         Text="{Binding Name}"
                                         StyleClass="LightBlue, CardTitle"
                                         />
-                                </StackLayout>
+                                </VerticalStackLayout>
                             </Frame>
+                            </SwipeView>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </VerticalStackLayout>
-        </ScrollView>
 
-        <Button Grid.Row="2"
+       <HorizontalStackLayout Spacing="4" Grid.Row="2">
+           <Button Grid.Row="2"
                 BorderWidth="1"
                 FontSize="40"
                 WidthRequest="60"
@@ -76,7 +85,64 @@
                 VerticalOptions="Start"
                 Clicked="AddRecipeButton_Tapped"
                 />
-            
+        </HorizontalStackLayout>
         
-    </Grid>
+
+        
+    </Grid>-->
+    <StackLayout>
+        <Frame CornerRadius="10" BackgroundColor="#cccccc" Margin="5">
+            <SearchBar CancelButtonColor="White" Placeholder="Search Recipes"
+                       TextColor="White" PlaceholderColor="WhiteSmoke"/>
+        </Frame>
+        <CollectionView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:RecipeModel">
+                    <SwipeView>
+                         <SwipeView.RightItems>
+                            <SwipeItems SwipeBehaviorOnInvoked="Close">
+                                <SwipeItem BackgroundColor="Red"
+                                           CommandParameter="{Binding .}"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type vm:RecipeViewModel}}, Path=RemoveRecipeCommand}"
+                                           Text="Delete" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                         <Frame BorderColor="Black"
+                               CornerRadius="5"
+                               Margin="5"
+                               Padding="10">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:RecipeViewModel}}, Path=GoToDetailspageCommand}"
+                                                      CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                            <StackLayout>
+                                <Label Text="{Binding Name}"
+                                       StyleClass="LightBlue, CardTitle"/>
+                            </StackLayout>
+                        </Frame>
+                    </SwipeView>
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <StackLayout Orientation="Horizontal" Spacing="4">
+            <Button WidthRequest="60"
+                    HeightRequest="60"
+                    CornerRadius="50"
+                    Text="+"
+                    FontSize="40"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    Clicked="AddRecipeButton_Tapped"/>
+            <Button WidthRequest="100"
+                    HeightRequest="60"
+                    CornerRadius="50"
+                    Text="+"
+                    FontSize="40"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    Clicked="AddIngredientsBtn_Tapped"/>
+            </StackLayout>
+    </StackLayout>
+
 </ContentPage>

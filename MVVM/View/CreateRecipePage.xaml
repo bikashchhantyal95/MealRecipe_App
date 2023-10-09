@@ -16,10 +16,6 @@
             </Frame>
 
             <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
-                <Editor Placeholder="Instructions" Text="{Binding Instructions}" x:Name="instructionsEntryField"/>
-            </Frame>
-
-            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
                 <Entry Placeholder="Instructions" Text="{Binding CookingTime}" x:Name="cookingTime"/>
             </Frame>
 

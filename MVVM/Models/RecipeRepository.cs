@@ -109,10 +109,50 @@ namespace MovieRecipeMobileAPp.MVVM.Models
                 return false;
             }
     }
+
+        public async Task<bool> AddIngredients(string recupeId, IngredientModel ingredient )
+        {
+            try
+            {
+                await firebaseClient.Child("Recipe").Child(recupeId).Child("Ingredients").PostAsync(ingredient);
+                return true;
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error adding ingredients: {e.Message}");
+                return false;
+            }
+        }
+
+
+        //Retrieve all recipes from the firebase database
+        public async Task<List<IngredientModel>> GetAllIngredients()
+        {
+            try
+            {
+                var ingredients = await firebaseClient.Child("Ingredients").OnceAsync<IngredientModel>();
+
+                return (
+                    ingredients.Select(
+                    item => new IngredientModel
+                    {
+                        Id = item.Key,
+                        Name = item.Object.Name
+                    }).ToList()
+                    );
+
+            }
+            catch (Exception e)
+            {
+                return new List<IngredientModel>();
+            }
+        }
+
     }
 
 
-    
+
 
     //Firebase configuration class
     public static class FirebaseConfig

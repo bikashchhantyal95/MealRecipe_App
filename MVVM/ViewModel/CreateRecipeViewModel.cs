@@ -23,9 +23,6 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
         private string description;
 
         [ObservableProperty]
-        private string instructions;
-
-        [ObservableProperty]
         private int cookingTime;
 
         public Command CreateRecipe { get; }
@@ -40,15 +37,13 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
             var recipe = new RecipeModel
             {
                 Name = Name,
-                Description = Description,
-                Instructions = Instructions
+                Description = Description
             };
             bool result = await recipeRepository.AddRecipe(recipe);
             if (result) {
                 Console.WriteLine("Added Recipe successfully.");
                 Name = String.Empty;
                 Description = String.Empty;
-                Instructions = String.Empty;
             }
             else
             {

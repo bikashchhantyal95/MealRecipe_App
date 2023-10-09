@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MovieRecipeMobileAPp.MVVM.View.CreateIngredientPage"
+             xmlns:vm="clr-namespace:MovieRecipeMobileAPp.MVVM.ViewModel"
+             x:DataType="vm:AddIngredientsViewModel"
              Title="CreateIngredientPage">
     <VerticalStackLayout>
         <Label 
@@ -9,17 +11,16 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
-                <Entry Placeholder="Ingredients" x:Name="ingredientsEntryField"/>
+                <Entry Placeholder="Ingredients" x:Name="ingredientsEntryField" Text="{Binding IngredientName, Mode=TwoWay}"/>
         </Frame>
 
-        <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
-                <Entry Placeholder="Quantiy" x:Name="qtyEntryField"/>
-        </Frame>
-
-        <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
-                <Entry Placeholder="Unit" x:Name="unitEntryField"/>
-        </Frame>
-
-        <Button Text="Add" HeightRequest="50" WidthRequest="70"/>
+        <Button Text="Add Ingredient" HeightRequest="50" WidthRequest="70" Command="{Binding AddIngredeintCommand}"/>
+        <ListView SelectionMode="None" ItemsSource="{Binding Ingredients}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>

@@ -1,7 +1,9 @@
 ﻿using System;
+using CommunityToolkit.Mvvm.Input;
+
 namespace MovieRecipeMobileAPp.MVVM.Models
 {
-	public class RecipeModel
+	public partial class RecipeModel
 	{
         public string Id { get; set; } // Unique identifier for the recipe
 
@@ -9,9 +11,17 @@ namespace MovieRecipeMobileAPp.MVVM.Models
 
         public string Description { get; set; }// Description of Recipe
 
-        public string Instructions { get; set; }//Instructions for Cooking the recipe
-
         public int CookingTime { get; set; } // Cooking time for recipe
+
+        public int PrepTime { get; set; } //Cooking preparation time
+
+        public DateTime Created { get; set; } //Time whwn recupe was created
+
+        public string Author { get; set; }
+
+        public Dictionary<string, IngredientModel> Ingredients { get; set; }
+
+        public Dictionary<string, InstructionsModel> Instructions { get; set; }
     }
 }
 

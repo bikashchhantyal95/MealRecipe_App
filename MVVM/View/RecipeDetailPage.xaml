@@ -15,7 +15,7 @@
         <Label Text="{Binding Recipe.Name}"/>
     </Grid>-->
 
-    <ScrollView>
+    <!--<ScrollView>
         <VerticalStackLayout Padding="20">
             <Label 
             Text="{Binding Recipe.Name}"
@@ -40,5 +40,93 @@
             <Button Text="Add Ingredients" Clicked="AddIngredients_Button_Clicked" HeightRequest="50" WidthRequest="80" TextColor="White"/>
 
         </VerticalStackLayout>
-    </ScrollView>
+    </ScrollView>-->
+    <Grid Margin="15" RowDefinitions=".4*, .1*, .1*, .4*">
+        <Border Grid.RowSpan="2">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20, 20, 20, 20"/>
+            </Border.StrokeShape>
+            <Grid RowDefinitions=".3*, .7*">
+                <Image
+                Grid.RowSpan="2"
+                Aspect="AspectFill"
+                Source="dotnet_bot.svg"
+                    />
+            </Grid>
+        </Border>
+        <Border Grid.Row="1"
+                Grid.RowSpan="2">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="30, 30, 30, 30"/>
+            </Border.StrokeShape>
+            <Grid ColumnDefinitions=".40*, 30*, 15*, 15*"
+                  RowDefinitions="*,*,*"
+                  Padding="20">
+                <Label Grid.ColumnSpan="2"
+                       FontAttributes="Bold"
+                       FontSize="25"
+                       Text="{Binding Recipe.Name}"
+                       />
+
+                <Border Margin="0, 0, 0, 0"
+                        HeightRequest="50"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        WidthRequest="50"
+                        Grid.Column="3"
+                        >
+                      <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10, 10, 10, 10"/>
+                      </Border.StrokeShape>
+                      <Label
+                          FontFamily="Icons"
+                          HorizontalOptions="Center"
+                          VerticalOptions="Center"
+                          Text="&#xE801;"
+                          FontSize="25"
+                          />
+                </Border>
+
+                <Border Margin="0, 0, 0, 0"
+                        HeightRequest="50"
+                        HorizontalOptions="End"
+                        VerticalOptions="Start"
+                        WidthRequest="50"
+                        Grid.Column="4"
+                        >
+                      <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10, 10, 10, 10"/>
+                      </Border.StrokeShape>
+                      <Label
+                          FontFamily="Icons"
+                          HorizontalOptions="Center"
+                          VerticalOptions="Center"
+                          Text="&#xE801;"
+                          FontSize="25"
+                          />
+                </Border>
+                
+            </Grid>
+        </Border>
+        <Border Grid.Row="2"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                HeightRequest="40"
+                WidthRequest="110"
+                Padding="10"
+                Background="Yellow"
+                >
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10, 10, 10, 10"/>
+            </Border.StrokeShape>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer />
+            </Border.GestureRecognizers>
+            <Label Text="Ingredients"
+                   TextTransform="Uppercase"
+                   TextColor="Black"
+                   />
+        </Border>
+    </Grid>
+
 </ContentPage>
