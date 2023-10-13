@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MovieRecipeMobileAPp.MVVM.Models;
-using static Java.Util.Jar.Attributes;
 
 namespace MovieRecipeMobileAPp.MVVM.ViewModel
 {
@@ -14,20 +13,32 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
         private readonly RecipeRepository recipeRepository;
 
         [ObservableProperty]
-        public ObservableCollection<string> ingredients = new();
+        public ObservableCollection<IngredientModel> ingredients = new();
 
 
         [ObservableProperty]
         private string ingredientName;
 
+        [ObservableProperty]
+        private int quantity;
+
+        [ObservableProperty]
+        private string unit;
+
         public AddIngredientsViewModel(string recipeKey)
 		{
             this.recipeKey = recipeKey;
             recipeRepository = new RecipeRepository();
-            _ = LoadIngredients();
+            LoadIngredients();
         }
 
-       
+
+        
+        public void DeleteIngredient(IngredientModel ingredient)
+        {
+            Shell.Current.DisplayAlert("Hello", $"{ingredient.Name}", "OK");
+        }
+
 
         private async Task SaveIngredientsToDatabaseAsync(object obj)
         {
@@ -53,14 +64,11 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
         {
             if (!string.IsNullOrWhiteSpace(IngredientName))
             {
-                Ingredients.Add(IngredientName);
-
-
                 var ingredient = new IngredientModel
                 {
                     Name = IngredientName,
-                    Quantity = 0,
-                    Unit = "KG"
+                    Quantity = Quantity,
+                    Unit = Unit
 
                 };
                 bool result = await recipeRepository.AddIngredients(recipeKey, ingredient);
@@ -76,16 +84,25 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
                 IngredientName = string.Empty;
             }
 
-            
+
         }
 
-        public async Task LoadIngredients()
+        public async void LoadIngredients()
         {
-            var allIngredeints = await recipeRepository.GetAllIngredients();
             Ingredients.Clear();
-            foreach (var ingredient in allIngredeints)
+            try
             {
-                Ingredients.Add(ingredient.Name);
+                var allIngredeints = await recipeRepository.GetAllIngredientsOfRecipe(recipeKey);
+                Ingredients.Clear();
+                foreach (var ingredient in allIngredeints)
+                {
+                    Ingredients.Add(ingredient);
+                }
+                Console.WriteLine(Ingredients[0].Name);
+            }
+            catch(Exception e)
+            {
+
             }
         }
     }

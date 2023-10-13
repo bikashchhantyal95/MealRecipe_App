@@ -17,11 +17,13 @@ namespace MovieRecipeMobileAPp.MVVM.Models
 
         public DateTime Created { get; set; } //Time whwn recupe was created
 
-        public string Author { get; set; }
+        public string Author { get; set; } // Author of the recipe
 
-        public Dictionary<string, IngredientModel> Ingredients { get; set; }
+        public string Image { get; set; } // Recipe Image
 
-        public Dictionary<string, InstructionsModel> Instructions { get; set; }
+        public Dictionary<string, IngredientModel> Ingredients { get; set; } 
+
+        public Dictionary<int, InstructionsModel> Instructions { get; set; }
     }
 }
 

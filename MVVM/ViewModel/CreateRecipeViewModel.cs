@@ -10,11 +10,11 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
     {
         private readonly RecipeRepository recipeRepository;
 
-		public CreateRecipeViewModel()
-		{
+        public CreateRecipeViewModel()
+        {
             recipeRepository = new RecipeRepository();
             CreateRecipe = new Command(CreateRecipeBtnTapped);
-		}
+        }
 
         [ObservableProperty]
         private string name;
@@ -27,6 +27,7 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 
         public Command CreateRecipe { get; }
 
+
         private async void CreateRecipeBtnTapped(object obj)
         {
             await SaveRecipeToDatabaseAsync(obj);
@@ -37,10 +38,12 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
             var recipe = new RecipeModel
             {
                 Name = Name,
-                Description = Description
+                Description = Description,
+                CookingTime = CookingTime
             };
             bool result = await recipeRepository.AddRecipe(recipe);
-            if (result) {
+            if (result)
+            {
                 Console.WriteLine("Added Recipe successfully.");
                 Name = String.Empty;
                 Description = String.Empty;
@@ -52,7 +55,6 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 
         }
 
-       
+
     }
 }
-

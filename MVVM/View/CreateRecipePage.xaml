@@ -4,20 +4,51 @@
              x:Class="MovieRecipeMobileAPp.MVVM.View.CreateRecipePage"
              xmlns:vm="clr-namespace:MovieRecipeMobileAPp.MVVM.ViewModel"
              x:DataType="vm:CreateRecipeViewModel"
-             Title="Create Recipe Page">
+             Title="Create Recipe">
     <ScrollView>
         <VerticalStackLayout Margin="0, 25, 0, 25">
             <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
-                <Entry Placeholder="Name of Recipe" Text="{Binding Name}" x:Name="nameEntryField"/>
+                <VerticalStackLayout>
+                    <Label Text="Name"/>
+                    <Entry Placeholder="Name of Recipe" Text="{Binding Name}" x:Name="nameEntryField"/>
+                </VerticalStackLayout>
             </Frame>
 
             <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
-                <Entry Placeholder="Description" Text="{Binding Description}" x:Name="descEntryField"/>
+                <VerticalStackLayout>
+                    <Label Text="Description"/>
+                    <Entry Placeholder="Description" Text="{Binding Description}" x:Name="descEntryField"/>
+                </VerticalStackLayout>
             </Frame>
 
             <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
-                <Entry Placeholder="Instructions" Text="{Binding CookingTime}" x:Name="cookingTime"/>
+                <VerticalStackLayout>
+                    <Label Text="Cooking Time"/>
+                    <Entry Placeholder="Cooking Time" Text="{Binding CookingTime}" x:Name="cookingTime" Keyboard="Numeric"/>
+                </VerticalStackLayout>
             </Frame>
+
+            <Frame Margin="20, 5, 20, 15" Padding="15, 6, 15, 6">
+                
+                <HorizontalStackLayout Spacing="10">
+                    <Image Source="dotnet_bot.svg"
+                           HeightRequest="50"
+                           WidthRequest="50"
+                           HorizontalOptions="Center"/>
+                    <Button Text="Select Image" x:Name="SelectImageBtn"/>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
+                <VerticalStackLayout>
+                    <Label Text="Preparation Time"/>
+                    <Entry Placeholder="Preparation Time" Text="PrepTime" x:Name="prepTime" Keyboard="Numeric"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!--<Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
+                <Entry Placeholder="Preparation Time" Text="{Binding PrepTime}" x:Name="prepTime" Keyboard="Numeric"/>
+            </Frame>-->
 
             <Button Text="Add Recipe" Padding="15" Margin="20, 0, 20, 0" Command="{Binding CreateRecipe}"/>
         </VerticalStackLayout>

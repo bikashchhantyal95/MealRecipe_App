@@ -26,8 +26,8 @@ public partial class DashboardPage : ContentPage
     {
         base.OnAppearing();
 
-		//Load all recipes
-		_recipeViewModel.LoadAllRecipes();
+        //Load all recipes
+        _recipeViewModel.LoadAllRecipes();
 
     }
 

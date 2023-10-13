@@ -5,42 +5,7 @@
              xmlns:vm="clr-namespace:MovieRecipeMobileAPp.MVVM.ViewModel"
              x:DataType="vm:RecipeDetailsViewModel"
              Title="RecipeDetailPage">
-    <!--<Grid Margin="15" RowDefinitions=".4*, .1*, .4*">
-        <Border Grid.RowSpan="2">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="20, 20, 20, 20"/>
-            </Border.StrokeShape>
-            <Button Text="Add Ingredients" Clicked="AddIngredients_Button_Clicked"/>
-        </Border>
-        <Label Text="{Binding Recipe.Name}"/>
-    </Grid>-->
-
-    <!--<ScrollView>
-        <VerticalStackLayout Padding="20">
-            <Label 
-            Text="{Binding Recipe.Name}"
-            FontSize="Large"
-            FontAttributes="Bold"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-
-
-            <Label 
-            Text="{Binding Recipe.Description}"
-            FontSize="Medium"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-
-            <Label 
-            Text="{Binding Recipe.Instructions}"
-            FontSize="Medium"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-
-            <Button Text="Add Ingredients" Clicked="AddIngredients_Button_Clicked" HeightRequest="50" WidthRequest="80" TextColor="White"/>
-
-        </VerticalStackLayout>
-    </ScrollView>-->
+    
     <Grid Margin="15" RowDefinitions=".4*, .1*, .1*, .4*">
         <Border Grid.RowSpan="2">
             <Border.StrokeShape>
@@ -108,25 +73,7 @@
                 
             </Grid>
         </Border>
-        <Border Grid.Row="2"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                HeightRequest="40"
-                WidthRequest="110"
-                Padding="10"
-                Background="Yellow"
-                >
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="10, 10, 10, 10"/>
-            </Border.StrokeShape>
-            <Border.GestureRecognizers>
-                <TapGestureRecognizer />
-            </Border.GestureRecognizers>
-            <Label Text="Ingredients"
-                   TextTransform="Uppercase"
-                   TextColor="Black"
-                   />
-        </Border>
+        <Button Grid.Row="2" Text="Ingredients" Clicked="AddIngredients_Button_Clicked"/>
     </Grid>
 
 </ContentPage>

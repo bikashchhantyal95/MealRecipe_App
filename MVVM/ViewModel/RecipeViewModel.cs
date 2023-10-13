@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MovieRecipeMobileAPp.MVVM.Models;
@@ -15,29 +13,30 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
         private readonly RecipeRepository recipeRepository;
 
 		[ObservableProperty]
-		public ObservableCollection<RecipeModel> recipes = new();
+		public ObservableCollection<RecipeModel> allRecipes = new();
 
 
 		public RecipeViewModel()
 		{
             recipeRepository = new RecipeRepository();
-			Recipes = new ObservableCollection<RecipeModel>();
+            AllRecipes = new ObservableCollection<RecipeModel>();
+            //Recipes = new ObservableCollection<RecipeModel>();
 
         }
 
 		public async Task LoadAllRecipes()
 		{
-            Recipes.Clear();
+            //Recipes.Clear();
 			try
 			{
                 var allRecipes = await recipeRepository.GetAllRecipes();
 				Console.Write(allRecipes);
                 foreach (var recipe in allRecipes)
                 {
-                    Recipes.Add(recipe);
-                }
+                    AllRecipes.Add(recipe);
+				}
                 Console.WriteLine("================");
-				Console.WriteLine(Recipes[0].Name);
+				//Console.WriteLine(Recipes[0].Name);
                 Console.WriteLine("================");
             } catch(Exception e)
 			{
@@ -54,21 +53,21 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 
         }
 
-        [RelayCommand]
-        public async void DeleteRecipe(RecipeModel selectedRecipe)
-        {
+		[RelayCommand]
+		public async void DeleteRecipe(RecipeModel selectedRecipe)
+		{
 			if (selectedRecipe == null)
 				return;
-			
+
 
 			bool isDeleted = await recipeRepository.RemoveRecipe(selectedRecipe.Id);
 			if (isDeleted)
 			{
 				await Shell.Current.DisplayAlert("Delete", selectedRecipe.Name, "OK");
-				Recipes.Remove(selectedRecipe);
+				AllRecipes.Remove(selectedRecipe);
 			}
 
-        }
-    }
+		}
+	}
 }
 
