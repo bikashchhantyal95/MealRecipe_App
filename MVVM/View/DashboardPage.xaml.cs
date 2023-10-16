@@ -17,17 +17,17 @@ public partial class DashboardPage : ContentPage
 		Navigation.PushAsync(new CreateRecipePage());
 	}
 
-    private void AddIngredientsBtn_Tapped(Object sender, EventArgs e)
-    {
-        //Navigation.PushAsync(new CreateIngredientPage());
-    }
+    //private void AddIngredientsBtn_Tapped(Object sender, EventArgs e)
+    //{
+    //    //Navigation.PushAsync(new CreateIngredientPage());
+    //}
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
 
-        //Load all recipes
-        _recipeViewModel.LoadAllRecipes();
+		//Load all recipes
+		_recipeViewModel.LoadAllRecipesCommand.Execute(null);
 
     }
 

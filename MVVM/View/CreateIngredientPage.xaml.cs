@@ -20,6 +20,12 @@ public partial class CreateIngredientPage : ContentPage
 
     private void AddIngredientsBtn_Tapped(Object sender, EventArgs e)
     {
-        Navigation.PushAsync(new IngredientsFormPage());
-    }
+        //Navigation.PushAsync(new IngredientsFormPage());
+
+		if (BindingContext is AddIngredientsViewModel vm)
+		{
+			string recipeKey = vm.recipeKey;
+			Navigation.PushAsync(new IngredientsFormPage(recipeKey));
+		}
+	}
 }

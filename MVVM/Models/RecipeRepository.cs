@@ -22,8 +22,8 @@ namespace MovieRecipeMobileAPp.MVVM.Models
             {
                 // recipe details before adding
                 Console.WriteLine($"Adding recipe: Name={recipe.Name}, Desc={recipe.Description}");
-
                 var res = await firebaseClient.Child("Recipe").PostAsync(recipe);
+                //return recipeKey.Key;
                 recipe.Id = res.Key;
                 Console.WriteLine("Recipe added successfully.");
                 return true;
@@ -76,11 +76,48 @@ namespace MovieRecipeMobileAPp.MVVM.Models
             }
         }
 
+        public async Task<bool> UpdateRecipeById(RecipeModel recipe)
+        {
+            try
+            {
+                await firebaseClient.Child("Recipe").Child(recipe.Id).PutAsync(recipe);
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+        }
+
+        // Remove recipe from the firebase database using key
+        public async Task<bool> RemoveRecipe(RecipeModel recipe)
+        {
+            try
+            {
+                await firebaseClient.Child("Recipe").Child(recipe.Id).DeleteAsync();
+
+                //if (recipeToDelete != null)
+                //    {
+                //        await firebaseClient.Child("Recipe").Child(recipeToDelete.Key).DeleteAsync();
+                //    }
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error deleting recipe: {e.Message}");
+                Console.WriteLine($"Error deleting recipe: {recipe.Id}");
+                return false;
+            }
+        }
+
         public async Task<bool> AddIngredients(string recipeId, IngredientModel ingredient)
         {
             try
             {
-                await firebaseClient.Child("Ingredients").Child(recipeId).PostAsync(ingredient);
+                var ingredientId = Guid.NewGuid().ToString();
+                await firebaseClient.Child("Ingredients").Child(recipeId).Child(ingredientId).PutAsync(ingredient);
+                //ingredient.Id = res.Key;
                 return true;
 
             }
@@ -117,21 +154,7 @@ namespace MovieRecipeMobileAPp.MVVM.Models
             }
         }
 
-        // Remove recipe from the firebase database using key
-    public async Task<bool> RemoveRecipe(string recipeKey)
-    {
-        try
-        {
-            await firebaseClient.Child("Recipe").Child(recipeKey).DeleteAsync();
-            return true;
-
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Error deleting recipe: {e.Message}");
-            return false;
-        }
-    }
+      
 
         public async Task<bool> RemoveIngredient(string recipeKey, string ingredientKey)
         {
@@ -144,6 +167,7 @@ namespace MovieRecipeMobileAPp.MVVM.Models
             catch (Exception e)
             {
                 Console.WriteLine($"Error deleting recipe: {e.Message}");
+                
                 return false;
             }
         }

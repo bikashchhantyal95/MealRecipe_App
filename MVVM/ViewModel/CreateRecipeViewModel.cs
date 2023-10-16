@@ -6,6 +6,7 @@ using MovieRecipeMobileAPp.MVVM.Models;
 
 namespace MovieRecipeMobileAPp.MVVM.ViewModel
 {
+    [QueryProperty(nameof(Recipe), "Recipe")]
     internal partial class CreateRecipeViewModel : ObservableObject
     {
         private readonly RecipeRepository recipeRepository;
@@ -14,16 +15,24 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
         {
             recipeRepository = new RecipeRepository();
             CreateRecipe = new Command(CreateRecipeBtnTapped);
+
+            ButtonText = string.IsNullOrEmpty(Recipe.Id) ? "Create Recipe" : "Update Recipe";
         }
 
-        [ObservableProperty]
-        private string name;
+        //[ObservableProperty]
+        //private string name;
+
+        //[ObservableProperty]
+        //private string description;
+
+        //[ObservableProperty]
+        //private int cookingTime;
 
         [ObservableProperty]
-        private string description;
+        private string buttonText;
 
         [ObservableProperty]
-        private int cookingTime;
+        private RecipeModel _recipe = new RecipeModel();
 
         public Command CreateRecipe { get; }
 
@@ -35,23 +44,41 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 
         private async Task SaveRecipeToDatabaseAsync(object obj)
         {
-            var recipe = new RecipeModel
+            if (string.IsNullOrEmpty(Recipe.Id))
             {
-                Name = Name,
-                Description = Description,
-                CookingTime = CookingTime
-            };
-            bool result = await recipeRepository.AddRecipe(recipe);
-            if (result)
-            {
-                Console.WriteLine("Added Recipe successfully.");
-                Name = String.Empty;
-                Description = String.Empty;
+                
+                var recipe = new RecipeModel
+                {
+                    Name = Recipe.Name,
+                    Description = Recipe.Description,
+                    CookingTime = Recipe.CookingTime
+                };
+
+
+
+                bool result = await recipeRepository.AddRecipe(recipe);
+                if (result)
+                {
+                    await Shell.Current.DisplayAlert("Sucessfull", $"'{recipe.Name}' created successfully", "Ok", null);
+                    Recipe.Name = String.Empty;
+                    Recipe.Description = String.Empty;
+                }
+                else
+                {
+                    Console.WriteLine("Failed to add Recipe !!!!!.");
+                }
+
+
+               
             }
-            else
-            {
-                Console.WriteLine("Failed to add Recipe successfully.");
+            else {
+               
+
+                await recipeRepository.UpdateRecipeById(Recipe);
+                await Shell.Current.DisplayAlert("Updated Success!!!", $"'{Recipe.Name}' updated successfully", "Ok", null);
             }
+
+            
 
         }
 

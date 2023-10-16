@@ -15,5 +15,10 @@
         Title="Details Page"
         ContentTemplate="{DataTemplate local:RecipeDetailPage}"
         Route="DetailPage" />
+
+    <ShellContent
+        Title="Create Ingredients Page"
+        ContentTemplate="{DataTemplate local:IngredientsFormPage}"
+        Route="IngredientsFormPage" />
 </Shell>
 

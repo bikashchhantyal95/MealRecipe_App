@@ -2,20 +2,28 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MovieRecipeMobileAPp.MVVM.View.IngredientsFormPage"
+             xmlns:vm="clr-namespace:MovieRecipeMobileAPp.MVVM.ViewModel"
+             x:DataType="vm:IngredientsFormViewModel"
              Title="Add Ingredients">
     <ScrollView>
         <VerticalStackLayout Margin="0, 25, 0, 25">
             <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
-                <Entry Placeholder="Title"/>
+                <Entry Placeholder="Title" Text="{Binding Title}" x:Name="titleEntry"/>
             </Frame>
 
             <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
-                <Entry Placeholder="Quantity"/>
+                <Entry Placeholder="Quantity" Text="{Binding Quantity}" x:Name="quantityEntry"/>
             </Frame>
 
             <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
-                <Entry Placeholder="Unit"/>
+                <Entry Placeholder="Unit" Text="{Binding Unit}" x:Name="unitEntry"/>
             </Frame>
+            <Button Text="Save"
+                    Padding="15, 6, 15, 6"
+                    Margin="20, 5, 20, 15"
+                    WidthRequest="200"
+                    Command="{Binding CreateIngredients}"
+                    />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

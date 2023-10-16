@@ -6,6 +6,7 @@ using MovieRecipeMobileAPp.MVVM.View;
 
 namespace MovieRecipeMobileAPp.MVVM.ViewModel
 {
+    
     internal partial class RecipeViewModel : ObservableObject
 	{
 		//public event PropertyChangedEventHandler PropertyChanged;
@@ -24,9 +25,10 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 
         }
 
+		[RelayCommand]
 		public async Task LoadAllRecipes()
 		{
-            //Recipes.Clear();
+            AllRecipes.Clear();
 			try
 			{
                 var allRecipes = await recipeRepository.GetAllRecipes();
@@ -60,7 +62,7 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 				return;
 
 
-			bool isDeleted = await recipeRepository.RemoveRecipe(selectedRecipe.Id);
+			bool isDeleted = await recipeRepository.RemoveRecipe(selectedRecipe);
 			if (isDeleted)
 			{
 				await Shell.Current.DisplayAlert("Delete", selectedRecipe.Name, "OK");
@@ -68,6 +70,32 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 			}
 
 		}
-	}
+
+        [RelayCommand]
+        public async void DisplayAction(RecipeModel recipe)
+        {
+            var response = await AppShell.Current.DisplayActionSheet("Select Option", "OK", null, "Edit", "Delete");
+            if (response == "Edit")
+            {
+                var navParam = new Dictionary<string, object>();
+                navParam.Add("Recipe", recipe);
+                await AppShell.Current.GoToAsync(nameof(CreateRecipePage), navParam);
+            }
+            else if (response == "Delete")
+            {
+                var confirmed = await Shell.Current.DisplayAlert("Confirm Delete", $"Are you sure you want to delete the recipe '{recipe.Name}'?", "Yes", "No");
+                if(confirmed)
+                {
+                    var delResponse = await recipeRepository.RemoveRecipe(recipe);
+                    if (delResponse)
+                    {
+                        LoadAllRecipes();
+                    }
+                }
+
+            }
+        }
+
+    }
 }
 

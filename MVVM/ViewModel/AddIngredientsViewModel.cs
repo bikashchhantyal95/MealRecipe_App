@@ -8,7 +8,7 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 {
     internal partial class AddIngredientsViewModel : ObservableObject
     {
-        private readonly string recipeKey;
+        public readonly string recipeKey;
 
         private readonly RecipeRepository recipeRepository;
 

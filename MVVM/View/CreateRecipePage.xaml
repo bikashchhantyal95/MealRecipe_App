@@ -10,21 +10,21 @@
             <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
                 <VerticalStackLayout>
                     <Label Text="Name"/>
-                    <Entry Placeholder="Name of Recipe" Text="{Binding Name}" x:Name="nameEntryField"/>
+                    <Entry Placeholder="Name of Recipe" Text="{Binding Recipe.Name}" x:Name="nameEntryField"/>
                 </VerticalStackLayout>
             </Frame>
 
             <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
                 <VerticalStackLayout>
                     <Label Text="Description"/>
-                    <Entry Placeholder="Description" Text="{Binding Description}" x:Name="descEntryField"/>
+                    <Entry Placeholder="Description" Text="{Binding Recipe.Description}" x:Name="descEntryField"/>
                 </VerticalStackLayout>
             </Frame>
 
             <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
                 <VerticalStackLayout>
                     <Label Text="Cooking Time"/>
-                    <Entry Placeholder="Cooking Time" Text="{Binding CookingTime}" x:Name="cookingTime" Keyboard="Numeric"/>
+                    <Entry Placeholder="Cooking Time" Text="{Binding Recipe.CookingTime}" x:Name="cookingTime" Keyboard="Numeric"/>
                 </VerticalStackLayout>
             </Frame>
 
@@ -50,7 +50,7 @@
                 <Entry Placeholder="Preparation Time" Text="{Binding PrepTime}" x:Name="prepTime" Keyboard="Numeric"/>
             </Frame>-->
 
-            <Button Text="Add Recipe" Padding="15" Margin="20, 0, 20, 0" Command="{Binding CreateRecipe}"/>
+            <Button Text="{Binding ButtonText}" Padding="15" Margin="20, 0, 20, 0" Command="{Binding CreateRecipe}"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

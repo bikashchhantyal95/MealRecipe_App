@@ -1,7 +1,7 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MovieRecipeMobileAPp.MVVM.Models;
-using static Java.Util.Jar.Attributes;
 
 namespace MovieRecipeMobileAPp.MVVM.ViewModel
 {
@@ -9,9 +9,15 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 	{
 
         private readonly RecipeRepository recipeRepository;
-		public IngredientsFormViewModel()
+
+        private string _recipekey;
+
+		public IngredientsFormViewModel(string recipeKey)
 		{
-		}
+            _recipekey = recipeKey;
+            recipeRepository = new RecipeRepository();
+            CreateIngredients = new Command(CreateIngredientsBtnTapped);
+        }
 
 		[ObservableProperty]
 		private string title;
@@ -22,24 +28,31 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 		[ObservableProperty]
 		private string unit;
 
-        private async Task SaveIngredientsToDatabaseAsync(object obj)
-        {
-            var recipe = new IngredientModel
-            {
-                Name = Title,
-                Quantity = Quantity,
-                Unit = Unit
-            };
-            //bool result = await recipeRepository.AddIngredients()
-            //if (result)
-            //{
-            //    Console.WriteLine("Added Recipe successfully.");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Failed to add Recipe successfully.");
-            //}
+        public Command CreateIngredients { get; }
 
+
+        public async void CreateIngredientsBtnTapped(Object sender)
+        {
+            await SaveIngredientsToDatabase();
+        }
+
+        private async Task  SaveIngredientsToDatabase()
+        {
+                var ingredient = new IngredientModel
+                {
+                    Name = Title,
+                    Quantity = Quantity,
+                    Unit = Unit
+                };
+                bool result = await recipeRepository.AddIngredients(recipeId: _recipekey, ingredient: ingredient);
+                if (result)
+                {
+                    await Shell.Current.DisplayAlert("Ingrediennt", $"{ingredient.Name} added successfully.", "OK");
+                }
+                else
+                {
+                    Console.WriteLine("Failed to add Recipe successfully.");
+                }   
         }
     }
 }

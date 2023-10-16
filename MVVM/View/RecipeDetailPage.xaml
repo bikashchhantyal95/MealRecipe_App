@@ -66,14 +66,16 @@
                           FontFamily="Icons"
                           HorizontalOptions="Center"
                           VerticalOptions="Center"
-                          Text="&#xE801;"
+                          Text="Edit"
                           FontSize="25"
                           />
+                     
                 </Border>
                 
             </Grid>
         </Border>
         <Button Grid.Row="2" Text="Ingredients" Clicked="AddIngredients_Button_Clicked"/>
+        <!--<Button Grid.Row="2" Text="Ingredients" Clicked="AddIngredients_Button_Clicked"/>-->
     </Grid>
 
 </ContentPage>

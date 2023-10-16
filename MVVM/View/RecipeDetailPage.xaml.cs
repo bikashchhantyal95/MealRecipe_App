@@ -22,4 +22,6 @@ public partial class RecipeDetailPage : ContentPage
 
 		//Navigation.PushAsync(new CreateIngredientPage());
     }
+
+
 }
