@@ -12,7 +12,7 @@ namespace MovieRecipeMobileAPp.MVVM.Models
 
         public RecipeRepository()
         {
-            firebaseClient = new FirebaseClient(FirebaseConfig.firebaseDatabaseUrl);
+            firebaseClient = new FirebaseClient(FirebaseConfiguration.firebaseDatabaseUrl);
         }
 
         //Add a new recipe to the firebase database
@@ -180,7 +180,7 @@ namespace MovieRecipeMobileAPp.MVVM.Models
 
 
 //Firebase configuration class
-public static class FirebaseConfig
+public static class FirebaseConfiguration
     {
         public const string firebaseDatabaseUrl = "https://recipebook-5d5d2-default-rtdb.firebaseio.com/";
     }

@@ -75,7 +75,6 @@
             </Grid>
         </Border>
         <Button Grid.Row="2" Text="Ingredients" Clicked="AddIngredients_Button_Clicked"/>
-        <!--<Button Grid.Row="2" Text="Ingredients" Clicked="AddIngredients_Button_Clicked"/>-->
     </Grid>
 
 </ContentPage>

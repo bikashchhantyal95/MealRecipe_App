@@ -5,8 +5,9 @@
              xmlns:models="clr-namespace:MovieRecipeMobileAPp.MVVM.Models"
              xmlns:vm="clr-namespace:MovieRecipeMobileAPp.MVVM.ViewModel"
              x:DataType="vm:RecipeViewModel"
+             Shell.NavBarIsVisible="True"
              Title="Recipe Book">
-    <ContentPage.Background>
+    <!--<ContentPage.Background>
         <LinearGradientBrush>
             <GradientStop Offset="0.1" Color="#FFCC33"/>
             <GradientStop Offset="1.0" Color="#FCBC03"/>
@@ -85,23 +86,67 @@
                 </CollectionView>
             </VerticalStackLayout>
         </ScrollView>
-
-       <!--<HorizontalStackLayout Spacing="4" Grid.Row="2">
-           <Button Grid.Row="2"
-                BorderWidth="1"
-                FontSize="40"
-                WidthRequest="60"
-                HeightRequest="60"
-                CornerRadius="50"
-                Text="+"
-                HorizontalOptions="Center"
-                VerticalOptions="Start"
-                Clicked="AddRecipeButton_Tapped"
-                />
-
-        </HorizontalStackLayout>-->
         
 
         
+    </Grid>-->
+
+    <Grid RowDefinitions=".10*, .10*, .80*" Margin="20">
+        <StackLayout Orientation="Vertical" Grid.Row="0">
+            <Label Text="What would you "
+               FontAttributes="Bold"
+               FontSize="40"/>
+            <Label Text="like to cook?"
+                   FontAttributes="Bold"
+                   FontSize="40"/>
+        </StackLayout>
+
+        <StackLayout Grid.Row="1" Margin="0, 0, 20,20">
+            <Border StrokeShape="RoundRectangle 10">
+                <HorizontalStackLayout>
+                    <SearchBar/>
+                </HorizontalStackLayout>
+            </Border>
+        </StackLayout>
+        
+
+        <VerticalStackLayout Grid.Row="2">
+            <Label Text="Recipes"
+                   FontAttributes="Bold"
+                   FontSize="40"/>
+            <CollectionView ItemsSource="{Binding AllRecipes}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                        Orientation="Vertical"
+                        ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:RecipeModel">
+                        <Frame HeightRequest="100">
+                            <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:RecipeViewModel}}, Path=GoToDetailspageCommand}"
+                                        CommandParameter="{Binding .}"
+                                        />
+
+                             </Frame.GestureRecognizers>
+                            <Grid RowDefinitions="*,*,*">
+                                <Label Text="{Binding Name}" />
+                                <HorizontalStackLayout Grid.Row="1">
+                                    <Label Text="By"/>
+                                    <Label Text="{Binding Author}"
+                                           FontAttributes="Bold"
+                                           FontSize="Caption"/>
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout Grid.Row="2">
+                                    <Label Text="{Binding CookingTime}"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
     </Grid>
+
 </ContentPage>

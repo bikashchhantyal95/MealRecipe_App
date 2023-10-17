@@ -49,9 +49,8 @@
                                         Margin="0, 0, 0, 5"
                                     />
                                     <!-- Label for the "Details" heading -->
-                                    <Label
-                                        Text="{Binding Unit}"
-                                        
+                                    <Picker
+                                        ItemsSource="{Binding Unit}"
                                         FontSize="12"
                                         FontAttributes="Bold"
                                         VerticalOptions="Start" 
