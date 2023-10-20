@@ -16,6 +16,8 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 		[ObservableProperty]
 		public ObservableCollection<RecipeModel> allRecipes = new();
 
+        [ObservableProperty]
+        private string searchText;
 
 		public RecipeViewModel()
 		{
@@ -95,6 +97,26 @@ namespace MovieRecipeMobileAPp.MVVM.ViewModel
 
             }
         }
+
+        
+        public async Task SearchRecipes(string searchText)
+        {
+            AllRecipes.Clear();
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                await LoadAllRecipes();
+            }
+            var searchResults = await recipeRepository.SearchRecipeByIngredient(searchText);
+            foreach(var recipe in searchResults)
+            {
+                await Shell.Current.DisplayAlert("Recipe", $"{recipe.Name}", "OK");
+                AllRecipes.Add(recipe);
+            }
+
+            //await Shell.Current.DisplayAlert("Recipe", $"{AllRecipes[0].Name}", "OK");
+        }
+
+
 
     }
 }

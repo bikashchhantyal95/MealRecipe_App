@@ -5,11 +5,22 @@
              xmlns:vm="clr-namespace:MovieRecipeMobileAPp.MVVM.ViewModel"
              x:DataType="vm:AddIngredientsViewModel"
              xmlns:model="clr-namespace:MovieRecipeMobileAPp.MVVM.Models"
+             BackgroundColor="White"
              Title="Create Ingredient">
     
 
-    <Grid BackgroundColor="Transparent">
+    <StackLayout BackgroundColor="Transparent"
+                 
+                 >
         <!-- ListView to display the event list -->
+        <Label Text="Ingredients here..."
+               TextColor="Black"
+               FontSize="25"
+               Margin="20,25,0,0"
+               HorizontalOptions="CenterAndExpand"
+               FontAttributes="Bold"
+               />
+
         <ListView
             
             ItemsSource="{Binding Ingredients}"
@@ -25,13 +36,15 @@
                         <!-- Grid to hold the content of the item -->
                         <Grid>
                             <!-- Frame to provide a visual container for the content -->
-                            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15" BackgroundColor="Transparent">
+                            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15" BackgroundColor="Transparent"
+                                   HeightRequest="80"
+                                   >
                                 <!-- VerticalStackLayout to stack the labels vertically -->
                                 <VerticalStackLayout>
                                     <!-- Label to display the event title -->
                                     <Label
                                         Text="{Binding Name}"
-                                        
+                                        TextColor="Black"
                                         FontSize="16"
                                         FontAttributes="Bold"
                                         VerticalOptions="Start" 
@@ -41,7 +54,7 @@
                                     <!-- Label to display the date of the event -->
                                     <Label
                                         Text="{Binding Quantity}"
-                                        
+                                        TextColor="Black"
                                         FontSize="14"
                                         FontAttributes="Bold"
                                         VerticalOptions="Start" 
@@ -52,7 +65,7 @@
                                     <Picker
                                         ItemsSource="{Binding Unit}"
                                         FontSize="12"
-                                        FontAttributes="Bold"
+                                        TextColor="Black"
                                         VerticalOptions="Start" 
                                         HorizontalOptions="Start"
                                         Margin="0, 0, 0, 5"
@@ -67,14 +80,19 @@
         </ListView>
 
         <!-- Button to add event details -->
-        <Button Text="Add Ingredients"
+        <Button Text="+"
                 Clicked="AddIngredientsBtn_Tapped"
                 CornerRadius="30"
                 Margin="0, 0, 20, 20"
                 Padding="12"
+                BackgroundColor="Grey"
+                FontSize="25"
+                TextColor="Black"
+                FontAttributes="Bold"
                 HeightRequest="50"
-                HorizontalOptions="End"
-                VerticalOptions="End" />
-    </Grid>
+                WidthRequest="50"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+    </StackLayout>
 
 </ContentPage>

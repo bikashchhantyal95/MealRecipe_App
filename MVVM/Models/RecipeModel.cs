@@ -19,7 +19,9 @@ namespace MovieRecipeMobileAPp.MVVM.Models
 
         public string Author { get; set; } // Author of the recipe
 
-        public string Image { get; set; } // Recipe Image
+        public string Instructions { get; set; }
+
+        //public string Image { get; set; } // Recipe Image
     }
 }
 

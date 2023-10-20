@@ -4,53 +4,114 @@
              x:Class="MovieRecipeMobileAPp.MVVM.View.CreateRecipePage"
              xmlns:vm="clr-namespace:MovieRecipeMobileAPp.MVVM.ViewModel"
              x:DataType="vm:CreateRecipeViewModel"
-             Title="Create Recipe">
+             
+             Background="White">
     <ScrollView>
         <VerticalStackLayout Margin="0, 25, 0, 25">
+            <Label Text="Craft Your Culinary Masterpiece: "
+                   TextColor="Black"
+                   FontSize="25"
+                   />
+            <Label Text="Create Recipe "
+                   TextColor="Black"
+                   FontSize="20"
+                   />
             <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
-                <VerticalStackLayout>
-                    <Label Text="Name"/>
-                    <Entry Placeholder="Name of Recipe" Text="{Binding Recipe.Name}" x:Name="nameEntryField"/>
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
-                <VerticalStackLayout>
-                    <Label Text="Description"/>
-                    <Entry Placeholder="Description" Text="{Binding Recipe.Description}" x:Name="descEntryField"/>
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
-                <VerticalStackLayout>
-                    <Label Text="Cooking Time"/>
-                    <Entry Placeholder="Cooking Time" Text="{Binding Recipe.CookingTime}" x:Name="cookingTime" Keyboard="Numeric"/>
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame Margin="20, 5, 20, 15" Padding="15, 6, 15, 6">
                 
-                <HorizontalStackLayout Spacing="10">
-                    <Image Source="dotnet_bot.svg"
-                           HeightRequest="50"
-                           WidthRequest="50"
-                           HorizontalOptions="Center"/>
-                    <Button Text="Select Image" x:Name="SelectImageBtn"/>
-                </HorizontalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Recipe Name"
+                           TextColor="Black"
+                           FontAttributes="Bold"/>
+                    <Entry Placeholder="Enter name of Recipe"
+                           Text="{Binding Recipe.Name}" x:Name="nameEntryField"
+                           PlaceholderColor="Black"
+                           TextColor="Black"
+                           />
+                    <Label 
+                           Text="{Binding ErrorName}"
+                           TextColor="Red"
+                           FontSize="14"
+                           Margin="10,0,0,0"
+                           VerticalOptions="Center" />
+
+                </VerticalStackLayout>
             </Frame>
 
             <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
                 <VerticalStackLayout>
-                    <Label Text="Preparation Time"/>
-                    <Entry Placeholder="Preparation Time" Text="PrepTime" x:Name="prepTime" Keyboard="Numeric"/>
+                    <Label Text="Description" FontAttributes="Bold"
+                           TextColor="Black"
+                           />
+                    <Entry Placeholder="Enter Recipe Description"
+                           PlaceholderColor="Black"
+                           TextColor="Black"
+                           Text="{Binding Recipe.Description}" x:Name="descEntryField"/>
+                    
                 </VerticalStackLayout>
             </Frame>
 
-            <!--<Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
-                <Entry Placeholder="Preparation Time" Text="{Binding PrepTime}" x:Name="prepTime" Keyboard="Numeric"/>
-            </Frame>-->
+            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
+                <VerticalStackLayout>
+                    <Label Text="Cooking Time"
+                           TextColor="Black"
+                           FontAttributes="Bold"/>
+                    <Entry Placeholder="Cooking Time"
+                           PlaceholderColor="Black"
+                           TextColor="Black"
+                           Text="{Binding Recipe.CookingTime}" x:Name="cookingTime" Keyboard="Numeric"/>
+                    <Label x:Name="errorCookingLabel"
+                           Text="{Binding ErrorCookingTime}"
+                           TextColor="Red"
+                           FontSize="14"
+                           Margin="10,0,0,0"
+                           VerticalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
 
-            <Button Text="{Binding ButtonText}" Padding="15" Margin="20, 0, 20, 0" Command="{Binding CreateRecipe}"/>
+            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
+                <VerticalStackLayout>
+                    <Label Text="Preparation Time" FontAttributes="Bold"
+                           TextColor="Black"
+                           />
+                    <Entry Placeholder="Preparation Time"
+                           PlaceholderColor="Black"
+                           TextColor="Black"
+                           Text="{Binding Recipe.PrepTime}" x:Name="prepTime" Keyboard="Numeric"/>
+                    <Label x:Name="errorPrepLabel"
+                           Text="{Binding ErrorPrepTime}"
+                           TextColor="Red"
+                           FontSize="14"
+                           Margin="10,0,0,0"
+                           VerticalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
+                <VerticalStackLayout>
+                    <Label Text="Instructions" FontAttributes="Bold"
+                           TextColor="Black"
+                           />
+                    <Editor Placeholder="Enter here ...."
+                            PlaceholderColor="Black"
+                            TextColor="Black"
+                            Text="{Binding Recipe.Instructions}"
+                            HeightRequest="100"
+                            x:Name="instructions"/>
+                    <Label 
+                           Text="{Binding ErrorDescription}"
+                           TextColor="Red"
+                           FontSize="14"
+                           Margin="10,0,0,0"
+                           VerticalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+            
+
+            <Button Text="Create"
+                    BackgroundColor="Grey"
+                    TextColor="Black"
+                    Padding="15" Margin="20, 0, 20, 0" Command="{Binding CreateRecipe}"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -57,6 +57,9 @@
 		<PackageReference Include="FirebaseDatabase.net" Version="4.0.2" />
 		<PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
 		<PackageReference Include="FirebaseAuthentication.net" Version="3.7.2" />
+		<PackageReference Include="Humanizer.Core" Version="2.14.1" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.8.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -67,6 +70,11 @@
 	  <None Remove="MVVM\View\User\" />
 	  <None Remove="Resources\AppIcon\menu.png" />
 	  <None Remove="Resources\.DS_Store" />
+	  <None Remove="Converters\" />
+	  <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Font Awesome 6 Brands-Regular-400.otf" />
+	  <None Remove="Resources\Fonts\Font Awesome 6 Free-Regular-400.otf" />
+	  <None Remove="Resources\Fonts\Font Awesome 6 Free-Solid-900.otf" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="MVVM\" />
@@ -74,9 +82,14 @@
 	  <Folder Include="MVVM\View\" />
 	  <Folder Include="MVVM\ViewModel\" />
 	  <Folder Include="MVVM\View\User\" />
+	  <Folder Include="Converters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\AppIcon\menu.png" />
 	  <BundleResource Include="Resources\.DS_Store" />
+	  <BundleResource Include="Resources\Fonts\MaterialIcons-Regular.ttf" />
+	  <BundleResource Include="Resources\Fonts\Font-Awesome-6-Brands-Regular-400.otf" />
+	  <BundleResource Include="Resources\Fonts\Font-Awesome-6-Free-Regular-400.otf" />
+	  <BundleResource Include="Resources\Fonts\Font-Awesome-6-Free-Solid-900.otf" />
 	</ItemGroup>
 </Project>

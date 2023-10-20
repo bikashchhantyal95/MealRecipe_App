@@ -13,6 +13,11 @@
         <Setter Property="SelectedIndicatorColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray100}}"/>
     </Style>
 
+    <Style TargetType="Label" x:Key="MaterialIcon">
+        <Setter Property="FontFamily" Value="MaterialIcon"/>
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+
     <Style TargetType="Border">
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}" />
         <Setter Property="StrokeShape" Value="Rectangle"/>

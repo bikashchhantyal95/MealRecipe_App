@@ -172,6 +172,35 @@ namespace MovieRecipeMobileAPp.MVVM.Models
             }
         }
 
+        public async Task<List<RecipeModel>> SearchRecipeByIngredient(string ingredientName)
+        {
+            try
+            {
+                var recipes = await firebaseClient.Child("Ingredients").OnceAsync<IngredientModel>();
+
+                var matchingRecipeIds = recipes.Where(item => item.Object.Name.Contains(ingredientName, StringComparison.OrdinalIgnoreCase))
+                                            .Select(item => item.Key)
+                                            .ToList();
+
+                var matchingRecipes = new List<RecipeModel>();
+                foreach(var recipeId in matchingRecipeIds)
+                {
+                    var recipe = await GetRecipeDetail(recipeId);
+                    if(recipe != null)
+                    {
+                        matchingRecipes.Add(recipe);
+                    }
+                }
+                Console.WriteLine(matchingRecipes[0].Name);
+                return matchingRecipes;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine($"Error searching recipes: {e.Message}");
+                return new List<RecipeModel>();
+            }
+
+        }
 
 
     }

@@ -4,11 +4,12 @@ namespace MovieRecipeMobileAPp.MVVM.View;
 
 public partial class RecipeDetailPage : ContentPage
 {
-	
+	private readonly RecipeDetailsViewModel _recipeDetailsViewModel;	
 	public RecipeDetailPage(RecipeDetailsViewModel vm)
 	{
 		InitializeComponent();
-		BindingContext = vm;
+		_recipeDetailsViewModel = vm;
+		BindingContext = _recipeDetailsViewModel;
 	}
 
     void AddIngredients_Button_Clicked(Object sender, EventArgs e)
@@ -23,5 +24,10 @@ public partial class RecipeDetailPage : ContentPage
 		//Navigation.PushAsync(new CreateIngredientPage());
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+		_recipeDetailsViewModel.LoadIngredientsCommand.Execute(null);
+    }
 
 }

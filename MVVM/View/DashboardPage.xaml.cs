@@ -31,4 +31,8 @@ public partial class DashboardPage : ContentPage
 
     }
 
+    void SearchBar_TextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
+    {
+        _recipeViewModel.SearchRecipes(e.NewTextValue);
+    }
 }
