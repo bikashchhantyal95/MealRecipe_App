@@ -3,13 +3,22 @@
     x:Class="MovieRecipeMobileAPp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MovieRecipeMobileAPp"
+    xmlns:local="clr-namespace:MovieRecipeMobileAPp.MVVM.View"
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Dashboard"
+        ContentTemplate="{DataTemplate local:DashboardPage}"
+        Route="DashboardPage" />
 
+    <ShellContent
+        Title="Details Page"
+        ContentTemplate="{DataTemplate local:RecipeDetailPage}"
+        Route="DetailPage" />
+
+    <ShellContent
+        Title="Create Ingredients Page"
+        ContentTemplate="{DataTemplate local:IngredientsFormPage}"
+        Route="IngredientsFormPage" />
 </Shell>
 

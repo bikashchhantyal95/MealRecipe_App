@@ -1,4 +1,6 @@
-﻿namespace MovieRecipeMobileAPp;
+﻿using MovieRecipeMobileAPp.MVVM.View;
+
+namespace MovieRecipeMobileAPp;
 
 public partial class App : Application
 {

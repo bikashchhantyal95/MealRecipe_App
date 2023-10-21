@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieRecipeMobileAPp.MVVM.View.CreateIngredientPage"
+             xmlns:vm="clr-namespace:MovieRecipeMobileAPp.MVVM.ViewModel"
+             x:DataType="vm:AddIngredientsViewModel"
+             xmlns:model="clr-namespace:MovieRecipeMobileAPp.MVVM.Models"
+             BackgroundColor="White"
+             Title="Create Ingredient">
+    
+
+    <StackLayout BackgroundColor="Transparent"
+                 
+                 >
+        <!-- ListView to display the event list -->
+        <Label Text="Ingredients here..."
+               TextColor="Black"
+               FontSize="25"
+               Margin="20,25,0,0"
+               HorizontalOptions="CenterAndExpand"
+               FontAttributes="Bold"
+               />
+
+        <ListView
+            
+            ItemsSource="{Binding Ingredients}"
+            HasUnevenRows="True"
+            Margin="0, 15, 0, 0"
+            SeparatorVisibility="None">
+
+            <!-- DataTemplate for each item in the ListView -->
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:IngredientModel">
+                    <!-- ViewCell to define the layout of each item -->
+                    <ViewCell>
+                        <!-- Grid to hold the content of the item -->
+                        <Grid>
+                            <!-- Frame to provide a visual container for the content -->
+                            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15" BackgroundColor="Transparent"
+                                   HeightRequest="80"
+                                   >
+                                <!-- VerticalStackLayout to stack the labels vertically -->
+                                <VerticalStackLayout>
+                                    <!-- Label to display the event title -->
+                                    <Label
+                                        Text="{Binding Name}"
+                                        TextColor="Black"
+                                        FontSize="16"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="Start" 
+                                        HorizontalOptions="Start"
+                                        Margin="0, 0, 0, 5"
+                                    />
+                                    <!-- Label to display the date of the event -->
+                                    <Label
+                                        Text="{Binding Quantity}"
+                                        TextColor="Black"
+                                        FontSize="14"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="Start" 
+                                        HorizontalOptions="Start"
+                                        Margin="0, 0, 0, 5"
+                                    />
+                                    <!-- Label for the "Details" heading -->
+                                    <Picker
+                                        ItemsSource="{Binding Unit}"
+                                        FontSize="12"
+                                        TextColor="Black"
+                                        VerticalOptions="Start" 
+                                        HorizontalOptions="Start"
+                                        Margin="0, 0, 0, 5"
+                                    />
+                                   
+                                </VerticalStackLayout>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Button to add event details -->
+        <Button Text="+"
+                Clicked="AddIngredientsBtn_Tapped"
+                CornerRadius="30"
+                Margin="0, 0, 20, 20"
+                Padding="12"
+                BackgroundColor="Grey"
+                FontSize="25"
+                TextColor="Black"
+                FontAttributes="Bold"
+                HeightRequest="50"
+                WidthRequest="50"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+    </StackLayout>
+
+</ContentPage>

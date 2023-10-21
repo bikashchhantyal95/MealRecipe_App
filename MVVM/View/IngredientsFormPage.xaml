@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieRecipeMobileAPp.MVVM.View.IngredientsFormPage"
+             xmlns:vm="clr-namespace:MovieRecipeMobileAPp.MVVM.ViewModel"
+             x:DataType="vm:IngredientsFormViewModel"
+             BackgroundColor="White"
+             Title="Add Ingredients">
+    <ScrollView>
+        <VerticalStackLayout Margin="0, 25, 0, 25">
+            <Label Text="Add Ingredients..."
+                   TextColor="Black"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"
+                   />
+            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
+                <VerticalStackLayout>
+                    <Label Text="Name"
+                           TextColor="Black"
+                           FontAttributes="Bold"/>
+                    <Entry Placeholder="Enter name of Recipe"
+                           Text="{Binding Quantity}"
+                           PlaceholderColor="Black"
+                           TextColor="Black"
+                           />
+                    <Label 
+                           Text="Error"
+                           TextColor="Red"
+                           FontSize="14"
+                           Margin="10,0,0,0"
+                           VerticalOptions="Center" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
+                <VerticalStackLayout>
+                    <Label Text="Quantity"
+                           TextColor="Black"
+                           FontAttributes="Bold"/>
+                    <Entry Placeholder="Enter the amount ..."
+                           Keyboard="Numeric"
+                           Text="{Binding Unit}"
+                           PlaceholderColor="Black"
+                           TextColor="Black"
+                           />
+                    <Label 
+                           Text="Error"
+                           TextColor="Red"
+                           FontSize="14"
+                           Margin="10,0,0,0"
+                           VerticalOptions="Center" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Padding="15, 6, 15, 6" Margin="20, 5, 20, 15">
+                <VerticalStackLayout>
+                    <Label Text="Unit"
+                           TextColor="Black"
+                           FontAttributes="Bold"/>
+                    <Entry Placeholder="Enter Unit"
+                           Text="{Binding Title}"
+                           PlaceholderColor="Black"
+                           TextColor="Black"
+                           />
+                    <Label 
+                           Text="Error"
+                           TextColor="Red"
+                           FontSize="14"
+                           Margin="10,0,0,0"
+                           VerticalOptions="Center" />
+
+                </VerticalStackLayout>
+            </Frame>
+            <Button Text="Save"
+                    Padding="15, 6, 15, 6"
+                    Margin="20, 5, 20, 15"
+                    WidthRequest="200"
+                    BackgroundColor="Grey"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    Command="{Binding CreateIngredients}"
+                    />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
